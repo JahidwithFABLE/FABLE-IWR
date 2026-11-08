@@ -1,0 +1,15 @@
+target_country_iso3,peer_group,peer_countries,peer_basis
+BHS,CARIBBEAN_ISLANDS,ATG;CUB;DOM;GRD;JAM;KNA;TTO,Caribbean island and nearby Caribbean irrigation-system peers
+BMU,CARIBBEAN_ISLANDS,ATG;CUB;DOM;GRD;JAM;KNA;TTO,Small Atlantic-Caribbean island irrigation-system peers
+BRB,CARIBBEAN_ISLANDS,ATG;CUB;DOM;GRD;JAM;KNA;TTO,Caribbean island and nearby Caribbean irrigation-system peers
+DMA,CARIBBEAN_ISLANDS,ATG;CUB;DOM;GRD;JAM;KNA;TTO,Caribbean island and nearby Caribbean irrigation-system peers
+LCA,CARIBBEAN_ISLANDS,ATG;CUB;DOM;GRD;JAM;KNA;TTO,Caribbean island and nearby Caribbean irrigation-system peers
+VCT,CARIBBEAN_ISLANDS,ATG;CUB;DOM;GRD;JAM;KNA;TTO,Caribbean island and nearby Caribbean irrigation-system peers
+VGB,CARIBBEAN_ISLANDS,ATG;CUB;DOM;GRD;JAM;KNA;TTO,Caribbean island and nearby Caribbean irrigation-system peers
+COM,WESTERN_INDIAN_OCEAN_ISLANDS,MDG;MUS;SYC,Western Indian Ocean island irrigation-system peers
+STP,GULF_OF_GUINEA,AGO;CMR;GAB;GNQ,Gulf of Guinea and adjacent tropical African irrigation-system peers
+TLS,MARITIME_SOUTHEAST_ASIA,IDN;MYS;PHL,Maritime Southeast Asian irrigation-system peers
+ESH,NORTHWEST_AFRICA,DZA;MAR;MRT,Northwest African arid-zone irrigation-system peers
+GUF,GUIANAS_NORTHERN_SOUTH_AMERICA,BRA;GUY;SUR,Guianas and adjacent northern South American irrigation-system peers
+TWN,EAST_ASIA,CHN;JPN;KOR,East Asian irrigation-system peers
+SSD,NILE_EAST_AFRICA,SDN;ETH;KEN;UGA,Sudan-Nile and East African irrigation-system peers
