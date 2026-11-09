@@ -1,5 +1,7 @@
 # IWR scientific notebooks
 
+The irrigation source literature, 2000/2015 share anchors, 2005/2010 interpolation, 2020 carry-forward, approved completion rules, and application × conveyance efficiency parameters are documented in [`../docs/irrigation-technology-sources.md`](../docs/irrigation-technology-sources.md).
+
 These notebooks are the editable scientific review sequence. Each scientific processing stage contains computation cells rather than merely calling a packaged script. **The accepted-net-to-gross script replay now agrees with the original gross release across 33 shared numeric fields.** Raw-source-to-net reconstruction and independent execution of every upstream notebook remain unverified.
 
 | Order | Notebook | Purpose | Verification status |

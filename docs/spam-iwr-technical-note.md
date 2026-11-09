@@ -1,31 +1,65 @@
-# FABLE historical land and irrigation inputs — combined technical note
+# Connecting SPAM historical land inputs with FABLE irrigation water requirements — V1 technical note
 
-## Purpose
+## Purpose and boundary
 
-This note describes how the historical SPAM-based cropland dataset and the IWR-based water requirement dataset connect to the FABLE Calculator. They are maintained as **separate code repositories**. Their provenance and validation must remain distinct even where IWR uses SPAM irrigated area as a denominator or volume multiplier.
+This note explains how the **separate** SPAM-to-FABLE land dataset and FABLE-IWR dataset development workflows interact. It is a methodological description of the IWR dataset and its use in the FABLE framework, not evidence that both IWR climate pathways were deployed in the operational FABLE Calculator.
 
-## 1. SPAM-based historical land and production area inputs
+## 1. SPAM-based historical area inputs
 
-The observed land-data processing uses original SPAM releases for 2000, 2005, 2010 and 2020. Crop-specific harvested and physical areas are reconstructed at native five-arc-minute resolution and mapped to 56 FABLE products. The 2015 historical layer is an interpolated midpoint based on 2010 and 2020 spatial observations and a documented country crosswalk. SPAM2000 completion includes approved country-level and MIRCA-based harmonization where the original source evidence is inadequate. The output is a historical 2000–2020 Calculator input table with irrigated/rainfed harvested area and physical-area/intensity quantities.
+Observed SPAM crop area data for 2000, 2005, 2010 and 2020 were mapped to the 56 FABLE products; the harmonized 2015 data are interpolated from 2010/2020 according to the separate SPAM processing methodology. The SPAM project distinguishes **irrigated harvested area** from **physical irrigation area** and retains country, crop and year mappings. Its dataset preparation, interpolation and validation belong to the separate SPAM repository. The IWR application uses the irrigated **harvested** hectares as the area weighting and volume-conversion denominator. One hectare may be harvested more than once in a year; physical area and harvested area must not be interchanged.
 
-The six SPAM clean-start stages have previous reference-validation PASS evidence. **That evidence belongs to the original validated scripts; a separate fresh run is still needed for any restructured GitHub code.** The SPAM workflow retains frozen upstream mapping/crosswalk and FAOSTAT/MIRCA decision evidence at particular steps and should not be described as independently reproducible from the raw SPAM downloads alone.
+## 2. Net crop irrigation water requirement — scientific dataset
 
-## 2. Irrigation-water requirement (IWR) coefficients
+The IWR project uses ISIMIP crop-model outputs, particularly LPJmL `pirrww` as the broad direct-reference series, supported by GEPIC/PEPIC comparisons and further FAO seasonal crop-water-need, other crop-water and geographical/temporal proxy evidence. Crop-specific mapping, scaling and reviewed direct/proxy decision routes produced a 56-product historical scientific dataset for reference years **2000, 2005, 2010, 2015 and 2020**. The accepted net master contains **29,338 country–product–year–pathway records** across **179 countries**, with the available `RCP26` and `RCP60` components. Not every Cartesian combination exists.
 
-Country × FABLE-product × year × climate-pathway net irrigation water coefficients were developed using ISIMIP LPJmL `pirrww` as a principal direct crop pathway and supplementary evidence for crops and country-years lacking direct coverage. GEPIC and PEPIC provided model comparisons and checks. External crop and hydrological evidence, robust reference-scaling approaches, crop proxy decisions and geographic/temporal completion contributed to the final accepted route layer. Scientific justification for each route belongs in the full technical report.
+The net coefficient `water_requirement_mm_yr` is millimetres per year. One millimetre per hectare equals **10 m³/ha**, hence:
 
-The final crop water-requirement master is 29,338 records, with RCP26 and RCP60 Calculator scenarios separated into 14,669 records each. The canonical quantity is mm/year, converted as 1 mm over 1 ha = 10 m³/ha/year. The total requirement uses SPAM irrigated harvested hectares where area-weighted volumes are calculated. Crop requirements exclude irrigation technology inefficiencies and constraints on available surface/groundwater.
+`NetIWR_m3_ha_yr = NetIWR_mm_yr × 10`.
 
-## 3. Irrigation systems and gross withdrawal requirements
+This represents net irrigation requirement and does **not** include the additional application/conveyance requirements of irrigation technology. Crop-water simulation evidence and accepted proxy/scaling decisions are separate from the technology adjustment below.
 
-Country-year shares of surface, sprinkler and drip irrigation were assembled from Jägermeyr and Rohwer sources, with documented time interpolation/carry-forward and separate source-gap completion. The final approved technology layer comprises 824 country-year rows. Generic delivery efficiencies used by the first-version calculation are 0.42, 0.7125 and 0.855 respectively. At any country-year state, gross withdrawal requirement is the net depth multiplied by the sum of each technology share divided by its efficiency.
+## 3. Country–year irrigation technology shares
 
-This calculates an **unconstrained gross irrigation withdrawal requirement**, not observed realised irrigation withdrawal. Gross minus net is additional delivery requirement and should not automatically be called consumptive water loss because return flows are not modelled.
+The original technology-share source processing used two cited scientific works:
 
-## 4. Interface and reproducibility boundary
+- **Rohwer, Gerten & Lucht (2007), PIK Report No. 104**, *Development of Functional Irrigation Types for Improved Global Crop Modelling* — Annex A historical irrigation-system patterns and Functional Irrigation Types (IFTs) for early-model reference.
+- **Jägermeyr et al. (2015), HESS 19:3073–3091**, *Water savings potentials of irrigation systems: global simulation of processes and linkages* — **Supplement Table S1** country technology shares compiled using FAO (2014), ICID (2012), and Rohwer (2007).
 
-The IWR code package contains a source-derived reconstruction of baseline technology-share anchors and a shorter **numerical replay** from the accepted net master and approved shares/efficiencies. It does not yet independently replay the full raw ISIMIP → crop-route-selection → missing-crop recovery workflow. The SPAM and IWR repositories must therefore carry separate validation manifests. Do not elevate a unit test or a frozen-evidence comparison into a full scientific reproduction claim.
+The pipeline assigns an approximate Rohwer early model anchor to **2000**, the Jägermeyr source compilation as a later model anchor to **2015**, interpolates **2005/2010** and carries the later anchor to **2020**. These are not uniformly observed system-share time series. Missing information is flagged, not silently turned into 100% surface irrigation. The accepted country-year layer was completed using the original *same-country nearest valid year first; predefined same-year regional peers second* rules. It contains **824 records for 179 countries** and three fractions (`surface_share`, `sprinkler_share`, `drip_share`) summing to one.
 
-## 5. Release governance
+**Important limitation:** these shares are **country–year**, not country–crop–year; every FABLE crop within a country-year receives the same system mix. Full detail, source paths, exception handling and reference links: [`irrigation-technology-sources.md`](irrigation-technology-sources.md).
 
-Metadata and code may be public only after their provenance, redistribution rights, institutional review and license have been checked. Raw SPAM/ISIMIP and third-party support datasets should be downloaded from permitted sources, rather than redistributed in the GitHub repositories without authorization.
+## 4. Selected irrigation system efficiencies
+
+The original main IWR notebook **Cell 114** selected a generic technology delivery baseline based on application efficiency multiplied by conveyance efficiency, consistent with the Rohwer (2007) methodological framework:
+
+| Irrigation system | Application | Conveyance | Total delivery efficiency | Inverse multiplier |
+|---|---:|---:|---:|---:|
+| Surface | 0.60 | 0.70 | **0.42** | 2.380952 |
+| Sprinkler | 0.75 | 0.95 | **0.7125** | 1.403509 |
+| Drip | 0.90 | 0.95 | **0.855** | 1.169591 |
+
+The baseline does **not** multiply by Rohwer's additional country-specific management/distribution factor; nor does it use Jägermeyr's beneficial-transpiration efficiency as though it were an application-and-conveyance delivery coefficient. The accepted efficiency parameter file has exactly **three rows**.
+
+For crop net requirement `N` (mm/yr), the modeled gross source withdrawal requirement is:
+
+\[
+G_{mm/yr} = N_{mm/yr}\left(\frac{s_{surface}}{0.42} + \frac{s_{sprinkler}}{0.7125} + \frac{s_{drip}}{0.855}\right).
+\]
+
+To obtain gross annual volume, multiply `G` by **10 m³/ha/mm**, then by corresponding **SPAM irrigated harvested hectares**. The difference between modeled gross and net requirement is labelled **additional delivery requirement**, not necessarily consumptive water loss; return flows are not resolved by this calculation.
+
+## 5. Climate pathways versus operational Calculator use
+
+The scientific dataset exports separate **RCP2.6** (`RCP26`) and **RCP6.0** (`RCP60`) output layers (14,669 records each). The project's initial FABLE Calculator application used harmonized historical crop-specific coefficients; **both RCP-specific source outputs were not directly deployed as separate operational Calculator scenario inputs**. Dataset construction and FABLE-C scenario implementation are separate claims.
+
+## 6. Release contents, evidence and limitations
+
+The GitHub V1 contains editable notebook stages, code companions, source/input inventories, methodology and QC evidence. It does **not** automatically include the processed numerical CSV masters or third-party input datasets. Where permitted, those could be distributed separately.
+
+Accepted-net → gross numerical reproduction is verified locally: **29,338 reconstructed vs 29,338 reference records, 33 shared numeric scientific fields, no reported mismatches**, plus accepted 824-row technology share QC and 10 local synthetic tests. The complete raw ISIMIP/LPJmL/GEPIC/PEPIC → selected proxy/scaling routes → accepted net master remains **not independently numerically replayed**. The country-share source-to-824-row derivation also awaits a full independent numerical comparison. All original research notebooks remain outside the public-facing repository.
+
+## Key references
+
+- Jägermeyr, J., Gerten, D., Heinke, J., Schaphoff, S., Kummu, M., & Lucht, W. (2015). *Water savings potentials of irrigation systems: global simulation of processes and linkages*. **Hydrology and Earth System Sciences**, 19, 3073–3091. https://doi.org/10.5194/hess-19-3073-2015 (see **Supplement Table S1**).
+- Rohwer, J., Gerten, D., & Lucht, W. (2007). *Development of Functional Irrigation Types for Improved Global Crop Modelling*. **PIK Report No. 104**. https://publications.pik-potsdam.de/pubman/item/item_14687.

@@ -1,6 +1,6 @@
 # Scientific source lineage
 
-The package was constructed by inspecting the user's original `Water_balance(1).zip` and `PIRRWW(1).zip` archives, not by inventing a new crop water model.
+The package was reconstructed from the archived original research notebooks under `Water_balance/` and `PIRRWW/`, not by designing a new crop water model. These original notebooks are retained outside the public repository.
 
 | Original notebook | Scientific role | GitHub counterpart |
 | --- | --- | --- |
@@ -15,3 +15,7 @@ The package was constructed by inspecting the user's original `Water_balance(1).
 **Important chronology:** `8 after finding problem with data sept 16.ipynb` contains a *Dataset A* with a different release purpose and schema. The 29,338-row crop requirement and 89-column gross master are associated with the later final release cells 111–117 of the main crop-water-requirement notebook. Do not merge these workflows only because the subject names are similar.
 
 Do not upload entire unreviewed Jupyter development histories to a public repository without checking hard-coded local paths, provider downloads, credentials, organizational data, outputs and redistribution permissions.
+
+## Irrigation technology citations and local inputs
+
+Original share processing is in `Water_balance/Water requirement dataset/01_build_global_irrigation_system_dataset_FINAL.ipynb.ipynb`: Rohwer, Gerten & Lucht (2007) Annex A / functional irrigation types for the earlier model anchor, and Jägermeyr et al. (2015) Supplement Table S1 for the later reference anchor. The first two local prepared source files are `01_global_irrigation_system_source_jagermeyr2015.csv` and `02_global_rohwer_irrigation_reference.csv` (see `docs/input-manifest.csv`). The accepted final share and efficiency files derive from Cells 112–114 of the main original IWR notebook; the source-derived intermediate share series is not identical to the approved final 824 rows by assumption. Full explanation and references: [`irrigation-technology-sources.md`](irrigation-technology-sources.md).

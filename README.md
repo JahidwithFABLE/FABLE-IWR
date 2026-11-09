@@ -2,7 +2,7 @@
 
 **Dataset methodology and scientific processing notebooks — Version 1.0**
 
-This repository documents the development of crop-specific **net irrigation water requirements (IWR)** and **gross irrigation withdrawal requirements** for the FABLE Calculator. It brings together the scientific data sources, crop harmonization, evidence-based completion methods, irrigation-system assumptions, calculation notebooks and quality-control procedures used in the first IWR dataset.
+This repository documents the development of crop-specific **net irrigation water requirements (IWR)** and **gross irrigation withdrawal requirements** for the FABLE framework. It brings together the scientific data sources, crop harmonization, evidence-based completion methods, irrigation-system assumptions, calculation notebooks and quality-control procedures used in the first IWR dataset.
 
 ## Dataset at a glance
 
@@ -11,7 +11,7 @@ This repository documents the development of crop-specific **net irrigation wate
 | FABLE products | 56 |
 | Countries | 179 |
 | Reference years | 2000, 2005, 2010, 2015, 2020 |
-| Climate pathways | RCP2.6 and RCP6.0 (`RCP26`, `RCP60`) |
+| Scientific dataset pathways | RCP2.6 and RCP6.0 (`RCP26`, `RCP60`); pathway files are **not** evidence that both were implemented in the operational FABLE Calculator |
 | Accepted net IWR master | 29,338 country–product–year–pathway records |
 | Accepted gross withdrawal master | 29,338 records |
 | Irrigation technology shares | 824 country–year records |
@@ -30,7 +30,13 @@ This repository documents the development of crop-specific **net irrigation wate
 7. **Gross requirement:** convert net IWR into gross irrigation withdrawal requirements using the approved irrigation-system efficiencies and shares.
 8. **Quality control:** test coverage, consistency, unit conversions and numerical agreement with the original accepted release.
 
-The methodology and the accepted crop-specific decisions are explained in [`docs/methodology.md`](docs/methodology.md), [`docs/source-lineage.md`](docs/source-lineage.md) and [`docs/reproducibility.md`](docs/reproducibility.md).
+The methodology and source decisions are explained in [`docs/methodology.md`](docs/methodology.md), [`docs/irrigation-technology-sources.md`](docs/irrigation-technology-sources.md), [`docs/source-lineage.md`](docs/source-lineage.md) and [`docs/reproducibility.md`](docs/reproducibility.md).
+
+## Irrigation technology data and references
+
+The country–year technology shares were derived from **Rohwer, Gerten & Lucht (2007)** and **Jägermeyr et al. (2015), Supplement Table S1**. The generic system delivery efficiencies are based on the Rohwer-style *application × conveyance* assumptions, not directly copied from Table S1. Sources, interpolation, missing-country rules and limitations are documented in [`docs/irrigation-technology-sources.md`](docs/irrigation-technology-sources.md).
+
+**Scenario-use distinction:** The scientific IWR release has separate `RCP26` and `RCP60` files. This does not mean both climate pathways were directly implemented in the operational FABLE Calculator; the initial Calculator application used harmonized historical crop-specific coefficients. Likewise, the files in this GitHub repository document the data processing but do **not** contain the released numerical CSV datasets themselves.
 
 ## Core calculation
 

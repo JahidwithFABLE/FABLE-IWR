@@ -14,13 +14,13 @@ Total net crop requirement before external system losses is the net unit area re
 
 ## Country-year irrigation technologies
 
-The original Jägermeyr/Rohwer source-processing workflow constructs two approximate anchors, early (~2000) and later (~2015), then uses linear interpolation for 2005 and 2010 when defensible. The later reference is carried forward to 2020; special zero-vector and source-gap cases are kept explicit. Source-derived shares and the approved full 824-record country-year technology layer are **distinct datasets**; frozen geographic completion cannot be inferred safely from the original two source tables alone.
+Source provenance, frozen completion rules and full citations are given in [`irrigation-technology-sources.md`](irrigation-technology-sources.md). The original Jägermeyr (2015, Supplement Table S1)/Rohwer, Gerten & Lucht (2007) source-processing workflow constructs two approximate anchors, early (~2000) and later (~2015), then uses linear interpolation for 2005 and 2010 when defensible. The later reference is carried forward to 2020; special zero-vector and source-gap cases are kept explicit. Source-derived shares and the approved full 824-record country-year technology layer are **distinct datasets**; frozen geographic completion cannot be inferred safely from the original two source tables alone.
 
 The three shares (surface, sprinkler, drip) are fractions of their country-year irrigation-technology mix, with a sum of one for the approved model-ready rows.
 
 ## Gross irrigation withdrawal requirement
 
-Efficiencies used by the original first-version model, as documented in Notebook Cell 114, are:
+Efficiencies used by the original first-version model, as documented in original Notebook Cell 114, are the selected generic **application × conveyance** efficiencies. They are not the Jägermeyr (2015) beneficial-efficiency estimates:
 
 | Technology | Final delivery efficiency (fraction) | Gross multiplier (1/efficiency) |
 | --- | ---: | ---: |
@@ -35,3 +35,7 @@ Converting depth to volume uses a factor 10 m³/ha per millimetre and multiplies
 ## What the code does not do
 
 It does not quantify realized historical withdrawal, groundwater/rivers availability, environmental flow limits, consumptive loss, actual return flows, or unrestricted redistribution of provider source data. It does not replace the extensive accepted route-selection science in the original notebooks. For provenance, see `source-lineage.md`.
+
+## Climate-pathway release scope
+
+The released scientific output inventories distinguish `RCP26` (RCP2.6) and `RCP60` (RCP6.0). The project did **not** operationally implement both pathway-specific datasets in FABLE-C. Do not conflate output scenario labels with deployed Calculator inputs. The `run-iwr.py` reproduction is from the accepted net master and approved technology tables, not a new end-to-end raw ISIMIP reconstruction.

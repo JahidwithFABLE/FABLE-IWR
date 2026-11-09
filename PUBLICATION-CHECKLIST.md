@@ -3,6 +3,8 @@
 ## Completed V1 review
 
 - [x] Scientific methodology, input inventory and crop-water/technology documentation included.
+- [x] Irrigation shares and efficiency derivation attributed to Jägermeyr et al. (2015) Table S1 and Rohwer et al. (2007), with anchor and gap-handling methods documented.
+- [x] Separate scientific RCP pathway outputs distinguished from their operational FABLE Calculator use.
 - [x] Editable notebook-first processing sequence and companion scripts included.
 - [x] Approved final net master QC passed locally.
 - [x] Approved technology QC passed: 824 records, 179 countries, 0 duplicate keys.
