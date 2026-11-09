@@ -1,6 +1,6 @@
 # FABLE Irrigation Water Requirements (IWR)
 
-**Dataset methodology and scientific processing notebooks — Version 1.0**
+**Dataset methodology and scientific processing notebooks - Version 1.0**
 
 This repository documents the development of crop-specific **net irrigation water requirements (IWR)** and **gross irrigation withdrawal requirements** for the FABLE framework. It brings together the scientific data sources, crop harmonization, evidence-based completion methods, irrigation-system assumptions, calculation notebooks and quality-control procedures used in the first IWR dataset.
 
