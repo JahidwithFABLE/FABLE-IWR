@@ -52,7 +52,7 @@ Here \(G\) is the **gross irrigation withdrawal requirement**, not observed with
 
 | Folder | Content |
 | --- | --- |
-| [`notebooks/`](notebooks/README.md) | 17 editable notebooks covering scientific processing stages and QC |
+| [`notebooks/`](notebooks/README.md) | 18 editable notebooks covering scientific processing, historical FABLE-C export and QC |
 | `scripts/` | Companion Python scripts for reproducible calculations |
 | `tools/` | Source-data acquisition and input-management utilities |
 | [`docs/`](docs/methodology.md) | Methodology, sources, input inventory, data dictionary and validation evidence |
@@ -72,6 +72,15 @@ python run-iwr.py --execute --data-root data --output-root runs/replay-01
 ```
 
 Input file names and destinations are in [`docs/input-manifest.csv`](docs/input-manifest.csv) and [`docs/inputs.md`](docs/inputs.md). The calculation runner uses the **accepted final net IWR and technology inputs** to replay the gross-withdrawal step. To study the upstream scientific methods, see the individual notebooks in processing order.
+
+
+## Historical FABLE-C input preparation
+
+The additional [historical FABLE-C export notebook](notebooks/16-fablec-historical-export.ipynb) and [`scripts/08-export-fablec-historical.py`](scripts/08-export-fablec-historical.py) reproduce the **original repaired historical Dataset A → FABLE3** export (country-crop net IWR coefficients, technology shares, and a separately matched SPAM panel). This differs from exporting or blindly averaging the RCP26/RCP60 scientific masters. The original seven-column IWR schema retains `Requirement_ha` (m³/ha/year), `Sur_shr`, `Spin_shr`, and `Drip_shr`; system efficiencies are held separately and used for optional gross diagnostics.
+
+The exporter also produces three **separate optional Calculator-input tables**: `FABLEC_NetIWR_Historical_2000_2020.csv`, `FABLEC_IrrigationTechnologyShares_2000_2020.csv`, and `FABLEC_IrrigationEfficiencies.csv`. All are derived from supplied approved historical inputs, not generated from a fresh raw-source reconstruction. They are **not** distributed in this code-only repository and have not yet been tested against the actual Excel workbook.
+
+See [`docs/fablec-integration.md`](docs/fablec-integration.md) for exact local sources, Windows copy commands, export columns and integration limits. See [`docs/climate-pathways.md`](docs/climate-pathways.md) for the original Cell 76C historical/direct-crop RCP treatment. This stage has synthetic unit tests; **original historical FABLE3 file parity has not yet been established** until the accepted repaired source and original exported CSVs are compared.
 
 ## V1 numerical checks
 

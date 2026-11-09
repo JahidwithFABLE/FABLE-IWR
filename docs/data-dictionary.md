@@ -26,3 +26,7 @@ This dictionary captures accepted concepts and mandatory field checks. It is **n
 - Gross irrigation withdrawal **requirement** is a modelled unconstrained demand, not an observed withdrawal or water supply.
 
 See `docs/inputs.md` and `docs/methodology.md` for source-specific meanings and limitations.
+
+## Optional historical FABLE-C inputs
+
+The standalone historical export adds `net_iwr_mm_yr` (mm/yr) and `net_iwr_m3_ha_yr` (m³/ha/year), keyed by `country_iso3`, `year`, and `fable_product`, without an RCP dimension. Country-year shares and selected technology efficiencies are exported in separate files. Missing net coefficients remain missing. See `docs/fablec-integration.md` for the schema and workbook integration limits.

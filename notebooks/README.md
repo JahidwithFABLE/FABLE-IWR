@@ -24,6 +24,10 @@ These notebooks are the editable scientific review sequence. Each scientific pro
 | 14 | `14-compare-release.ipynb` | Compare rebuilt vs archived final results | Validated by companion script against 29,338-row reference (33 common fields); notebook-cell replay not separately established |
 | 15 | `15-aquastat-qc.ipynb` | External benchmarking without filling missing observations | Source-version check pending |
 
+| 16 | `16-fablec-historical-export.ipynb` | Accepted repaired historical IWR + corrected SPAM + technology shares → original FABLE3 historical input tables | Synthetic tests pass; original FABLE3 numeric reference comparison pending |
+
 **Run order:** place approved source files under `data/` according to `docs/input-manifest.csv`, open the repository in Jupyter using the `pythongeo` environment, and execute the relevant notebook cells in order. Missing required source files should raise errors rather than trigger invented replacements. Keep the original research notebooks separately in the private handover archive, not in this public-facing candidate.
 
 **Main remaining scientific dependency for full end-to-end reproducibility:** a reproducible replay of the accepted B2/D1/D2/D3 route selection and all proxy/scaling decisions from original upstream data. Frozen route evidence is a transparency-preserving interim solution, not independent scientific regeneration.
+
+The optional historical stage also exports three standalone Calculator input tables (net IWR, country-year technology shares, fixed efficiency parameters) without replacing the original FABLE3 seven-column IWR export. See `docs/fablec-integration.md`.

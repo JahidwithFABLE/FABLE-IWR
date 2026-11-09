@@ -26,3 +26,7 @@ The full accepted B2/D1/D2/D3 route-selection decisions and historical evidence 
 ## Scientific source and scenario-use clarifications
 
 The system-share sources are Jägermeyr et al. (2015, Supplement Table S1) and Rohwer et al. (2007, Annex A/IFT). The final efficiencies (0.42, 0.7125, 0.855) are **selected application × conveyance assumptions**, not direct observed efficiencies for 179 countries. Their detailed attribution is in [`irrigation-technology-sources.md`](irrigation-technology-sources.md). The RCP26/RCP60 scientific output layers should not be described as two already deployed FABLE-C scenario inputs.
+
+## Historical FABLE3 export extension
+
+`notebooks/16-fablec-historical-export.ipynb` and `scripts/08-export-fablec-historical.py` implement the original September SPAM overlay/repaired historical IWR/approved-share export route. Synthetic regression tests pass. **Do not** conflate this with the prior 33-field accepted-net-to-gross comparison: the original FABLE3 export file has not been supplied in the publication package, so historical-export numeric reference parity remains pending.

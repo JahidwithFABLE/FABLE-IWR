@@ -39,3 +39,7 @@ It does not quantify realized historical withdrawal, groundwater/rivers availabi
 ## Climate-pathway release scope
 
 The released scientific output inventories distinguish `RCP26` (RCP2.6) and `RCP60` (RCP6.0). The project did **not** operationally implement both pathway-specific datasets in FABLE-C. Do not conflate output scenario labels with deployed Calculator inputs. The `run-iwr.py` reproduction is from the accepted net master and approved technology tables, not a new end-to-end raw ISIMIP reconstruction.
+
+## Scenario-neutral historical FABLE-C export
+
+The September **repaired** historical IWR coefficient file and corrected SPAM country panel are the accepted inputs for historical FABLE3 export, not a mechanical collapse of the 29,338-row RCP-resolved scientific master. See [`fablec-integration.md`](fablec-integration.md) and [`climate-pathways.md`](climate-pathways.md) for original export lineage, climate harmonization and the operational calculation boundary.
