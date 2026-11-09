@@ -1,0 +1,71 @@
+{
+  "status": "PASS_FABLEC_HISTORICAL_EXPORT_QC",
+  "method": "original September final repaired historical IWR + 05 SPAM skeleton + 06 correction + accepted technology shares",
+  "spam_rows": 57400,
+  "iwr_rows": 57400,
+  "countries": 205,
+  "products": 56,
+  "years": [
+    2000,
+    2005,
+    2010,
+    2015,
+    2020
+  ],
+  "positive_irrigated_states": 10785,
+  "positive_area_missing_iwr": 0,
+  "positive_area_missing_technology": 0,
+  "iwr_only_keys_excluded": 45,
+  "blank_iwr_states_retained": 40237,
+  "blank_technology_states_retained": 11256,
+  "zero_iwr_states_retained": 313,
+  "complete_share_vectors": 46144,
+  "non56_country_year_panels": 0,
+  "all_keys_identical": true,
+  "efficiencies": {
+    "surface": 0.42,
+    "sprinkler": 0.7124999999999999,
+    "drip": 0.855
+  },
+  "historical_RCP_recomputed": false,
+  "scope": "accepted historical repaired Dataset A to historical FABLE3 export; no raw-ISIMIP reconstruction",
+  "reference_comparisons": {
+    "iwr": {
+      "status": "PASS_NUMERIC_REFERENCE_MATCH",
+      "fresh_rows": 57400,
+      "reference_rows": 57400,
+      "missing_or_extra_keys": 0,
+      "mismatch_counts": {
+        "Requirement_ha": 0,
+        "Sur_shr": 0,
+        "Spin_shr": 0,
+        "Drip_shr": 0
+      },
+      "tolerance": {
+        "atol": 1e-06,
+        "rtol": 1e-09
+      }
+    },
+    "spam": {
+      "status": "PASS_NUMERIC_REFERENCE_MATCH",
+      "fresh_rows": 57400,
+      "reference_rows": 57400,
+      "missing_or_extra_keys": 0,
+      "mismatch_counts": {
+        "irrigated_harvested": 0,
+        "rainfed_harvested": 0,
+        "harvesting_intensity_irrigated": 0,
+        "harvesting_intensity_rainfed": 0
+      },
+      "tolerance": {
+        "atol": 1e-06,
+        "rtol": 1e-09
+      }
+    }
+  },
+  "calculator_input_files": [
+    "FABLEC_NetIWR_Historical_2000_2020.csv",
+    "FABLEC_IrrigationTechnologyShares_2000_2020.csv",
+    "FABLEC_IrrigationEfficiencies.csv"
+  ]
+}

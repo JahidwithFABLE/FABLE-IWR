@@ -22,7 +22,9 @@ runs/
 *.parquet
 *.csv.gz
 *.zip
+
 /data/**
 !/data/
 !/data/**/
 !/data/**/README.md
+/data/
